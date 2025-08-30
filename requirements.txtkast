@@ -1,0 +1,9 @@
+Django==4.2.7
+django-allauth==0.57.0
+django-crispy-forms==2.0
+crispy-bootstrap5==0.7
+Pillow==11.3.0
+python-decouple==3.8
+
+
+pip install django-crispy-forms crispy-bootstrap5
