@@ -1,0 +1,144 @@
+
+<!-- website/portfolio.html -->
+{% extends 'base.html' %}
+
+{% block title %}أعمالنا - Deep Noorana{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="bg-primary text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-5 fw-bold mb-3">أعمالنا</h1>
+                <p class="lead">شاهد بعض المشاريع التي أنجزناها بنجاح</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Content -->
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="fw-bold mb-3">مشاريعنا المميزة</h2>
+                <p class="lead text-muted">نفتخر بالمشاريع التي أنجزناها وساهمت في نجاح عملائنا</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Project 1 -->
+            <div class="col-lg-6">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-globe fa-2x text-primary me-3"></i>
+                            <div>
+                                <h5 class="card-title fw-bold mb-1">oikosmou.com</h5>
+                                <p class="text-muted small mb-0">موقع تجاري متقدم</p>
+                            </div>
+                        </div>
+                        <p class="card-text text-muted mb-3">
+                            موقع تجاري شامل يتضمن عرض المنتجات، نظام الدفع الإلكتروني، وإدارة المخزون. 
+                            تم تطويره بتقنيات حديثة وواجهة مستخدم سهلة.
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="tech-stack">
+                                <span class="badge bg-primary me-1">Django</span>
+                                <span class="badge bg-success me-1">Bootstrap</span>
+                                <span class="badge bg-info me-1">JavaScript</span>
+                            </div>
+                            <a href="https://oikosmou.com" target="_blank" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-external-link-alt me-1"></i>
+                                زيارة الموقع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- More Projects Placeholder -->
+            <div class="col-lg-6">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body p-4 text-center">
+                        <i class="fas fa-plus-circle fa-4x text-muted mb-3"></i>
+                        <h5 class="fw-bold mb-3">المزيد من المشاريع قريباً</h5>
+                        <p class="text-muted">
+                            نعمل على إضافة المزيد من المشاريع المميزة التي أنجزناها. 
+                            ترقبوا التحديثات القادمة!
+                        </p>
+                        <a href="{% url 'website:request_website' %}" class="btn btn-primary">
+                            <i class="fas fa-rocket me-2"></i>
+                            ابدأ مشروعك الآن
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Technologies Section -->
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="fw-bold mb-3">التقنيات التي نستخدمها</h2>
+                <p class="lead text-muted">نستخدم أحدث التقنيات لضمان الأداء المثالي</p>
+            </div>
+        </div>
+        
+        <div class="row g-4 text-center">
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <i class="fab fa-python fa-3x text-success mb-2"></i>
+                        <h6>Python/Django</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <i class="fab fa-js-square fa-3x text-warning mb-2"></i>
+                        <h6>JavaScript</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <i class="fab fa-react fa-3x text-info mb-2"></i>
+                        <h6>React</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <i class="fab fa-bootstrap fa-3x text-purple mb-2"></i>
+                        <h6>Bootstrap</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <i class="fas fa-database fa-3x text-dark mb-2"></i>
+                        <h6>PostgreSQL</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <i class="fab fa-aws fa-3x text-orange mb-2"></i>
+                        <h6>AWS</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

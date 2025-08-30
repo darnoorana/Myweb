@@ -1,0 +1,173 @@
+
+
+<!-- website/join_us.html -->
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}انضم لنا - Deep Noorana{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="bg-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold mb-3">انضم لفريقنا</h1>
+                <p class="lead">نفتح أذرعنا للمطورين على اختلاف درجات خبراتهم لنكون شركاء النجاح</p>
+            </div>
+            <div class="col-lg-6 text-center">
+                <i class="fas fa-users fa-6x opacity-75"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Job Application Form -->
+<section class="section-padding">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-5">
+                        <h3 class="fw-bold mb-4">نموذج طلب التوظيف</h3>
+                        <p class="text-muted mb-4">املأ البيانات التالية وسنتواصل معك في أقرب وقت</p>
+                        
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% crispy form %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <!-- Available Positions -->
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-briefcase me-2"></i>
+                            الوظائف المتاحة
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fab fa-html5 fa-lg text-danger me-3"></i>
+                            <div>
+                                <h6 class="mb-0">مطور واجهات أمامية</h6>
+                                <small class="text-muted">HTML, CSS, JavaScript, React</small>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fab fa-python fa-lg text-success me-3"></i>
+                            <div>
+                                <h6 class="mb-0">مطور خلفي</h6>
+                                <small class="text-muted">Python, Django, APIs</small>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-layer-group fa-lg text-info me-3"></i>
+                            <div>
+                                <h6 class="mb-0">مطور شامل</h6>
+                                <small class="text-muted">Full Stack Development</small>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-mobile-alt fa-lg text-warning me-3"></i>
+                            <div>
+                                <h6 class="mb-0">مطور تطبيقات جوال</h6>
+                                <small class="text-muted">iOS, Android, React Native</small>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-paint-brush fa-lg text-purple me-3"></i>
+                            <div>
+                                <h6 class="mb-0">مصمم واجهات</h6>
+                                <small class="text-muted">UI/UX Design</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Benefits -->
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-star me-2"></i>
+                            مزايا العمل معنا
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            <span class="small">بيئة عمل مرنة</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            <span class="small">فرص تعلم مستمرة</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            <span class="small">مشاريع متنوعة ومثيرة</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            <span class="small">فريق عمل متعاون</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            <span class="small">إمكانية العمل عن بُعد</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-check text-success me-2"></i>
+                            <span class="small">مشاركة في الأرباح</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Culture -->
+<section class="section-padding bg-light">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="fw-bold mb-4">ثقافة فريقنا</h2>
+                <p class="lead text-muted mb-5">
+                    نؤمن بأن النجاح يأتي من العمل الجماعي والتعلم المستمر. 
+                    نبني بيئة عمل تشجع على الإبداع والابتكار.
+                </p>
+                
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="p-4">
+                            <i class="fas fa-lightbulb fa-3x text-warning mb-3"></i>
+                            <h5 class="fw-bold">الإبداع</h5>
+                            <p class="text-muted">نشجع الأفكار الجديدة والحلول المبتكرة</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-4">
+                            <i class="fas fa-graduation-cap fa-3x text-info mb-3"></i>
+                            <h5 class="fw-bold">التعلم</h5>
+                            <p class="text-muted">نوفر فرص تطوير المهارات والتعلم المستمر</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-4">
+                            <i class="fas fa-handshake fa-3x text-success mb-3"></i>
+                            <h5 class="fw-bold">التعاون</h5>
+                            <p class="text-muted">نعمل كفريق واحد لتحقيق أهدافنا المشتركة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

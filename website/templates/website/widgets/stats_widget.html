@@ -1,0 +1,36 @@
+
+# website/templates/website/widgets/stats_widget.html
+<div class="row text-center">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h4>{{ total_requests }}</h4>
+                <p>إجمالي الطلبات</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <h4>{{ pending_requests }}</h4>
+                <p>طلبات قيد المراجعة</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <h4>{{ total_posts }}</h4>
+                <p>المقالات المنشورة</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <h4>100%</h4>
+                <p>مجاني</p>
+            </div>
+        </div>
+    </div>
+</div>

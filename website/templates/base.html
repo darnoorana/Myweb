@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}شركة تطوير المواقع{% endblock %}</title>
+    
+    <!-- Bootstrap RTL CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts Arabic -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+        }
+        
+        .card {
+            transition: transform 0.3s;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #5a6fd8, #6a42a0);
+        }
+        
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        .text-gradient {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-gradient" href="{% url 'website:home' %}">
+                <i class="fas fa-code me-2"></i>
+                Deep Noorana
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'website:home' %}">الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'website:about' %}">من نحن</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'website:services' %}">خدماتنا</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'website:portfolio' %}">أعمالنا</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'website:charity_projects' %}">مشاريع خيرية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blog:blog_list' %}">المدونة</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'website:join_us' %}">انضم لنا</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'website:contact' %}">تواصل معنا</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-user me-1"></i>{{ user.first_name|default:user.username }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'blog:my_posts' %}">مقالاتي</a></li>
+                                <li><a class="dropdown-item" href="{% url 'blog:create_post' %}">إنشاء مقالة</a></li>
+                                {% if user.is_staff %}
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{% url 'dashboard:dashboard' %}">لوحة التحكم</a></li>
+                                    <li><a class="dropdown-item" href="/admin/">الإدارة</a></li>
+                                {% endif %}
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{% url 'account_logout' %}">تسجيل الخروج</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_login' %}">تسجيل الدخول</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                <a href="{% url 'website:request_website' %}" class="btn btn-primary ms-3">
+                    <i class="fas fa-plus me-1"></i>
+                    اطلب موقعك
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main style="margin-top: 76px;">
+        <!-- Messages -->
+        {% if messages %}
+            <div class="container mt-3">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="text-gradient mb-3">Deep Noorana</h5>
+                    <p class="mb-3">نحن مجموعة من المطورين سعادتنا تتحقق بنجاحكم. نسخر التكنولوجيا لكم بأقل تكلفة.</p>
+                    <div class="d-flex gap-3">
+                        <a href="mailto:deepnoorana@gmail.com" class="text-white">
+                            <i class="fas fa-envelope fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-white">
+                            <i class="fab fa-whatsapp fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-white">
+                            <i class="fab fa-telegram fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="mb-3">روابط سريعة</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'website:home' %}" class="text-white-50 text-decoration-none">الرئيسية</a></li>
+                        <li><a href="{% url 'website:about' %}" class="text-white-50 text-decoration-none">من نحن</a></li>
+                        <li><a href="{% url 'website:services' %}" class="text-white-50 text-decoration-none">خدماتنا</a></li>
+                        <li><a href="{% url 'website:portfolio' %}" class="text-white-50 text-decoration-none">أعمالنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="mb-3">خدماتنا</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50 text-decoration-none">تطوير المواقع</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">التطبيقات الجوالة</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">التجارة الإلكترونية</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">الاستضافة والدومين</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="mb-3">تواصل معنا</h6>
+                    <p class="text-white-50 mb-2">
+                        <i class="fas fa-envelope me-2"></i>
+                        deepnoorana@gmail.com
+                    </p>
+                    <p class="text-white-50 mb-2">
+                        <i class="fas fa-phone me-2"></i>
+                        +20 123 456 789
+                    </p>
+                    <p class="text-white-50">
+                        <i class="fab fa-whatsapp me-2"></i>
+                        واتساب: +20 123 456 789
+                    </p>
+                </div>
+            </div>
+            
+            <hr class="my-4 border-light">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-white-50 mb-0">© 2024 Deep Noorana. جميع الحقوق محفوظة.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white-50 text-decoration-none me-3">سياسة الخصوصية</a>
+                    <a href="#" class="text-white-50 text-decoration-none">شروط الاستخدام</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

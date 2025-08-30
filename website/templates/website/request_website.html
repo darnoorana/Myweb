@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}اطلب موقعك - Deep Noorana{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="bg-primary text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-5 fw-bold mb-3">اطلب موقعك الإلكتروني</h1>
+                <p class="lead">املأ النموذج أدناه وسنتواصل معك خلال 24 ساعة لبدء تطوير موقعك مجاناً</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Form Section -->
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow-lg border-0">
+                    <div class="card-body p-5">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-laptop-code fa-3x text-primary mb-3"></i>
+                            <h3 class="fw-bold">نموذج طلب موقع إلكتروني</h3>
+                            <p class="text-muted">جميع الحقول مطلوبة للحصول على أفضل خدمة</p>
+                        </div>
+
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% crispy form %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process Section -->
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="fw-bold mb-3">كيف نعمل؟</h2>
+                <p class="lead text-muted">عملية بسيطة وواضحة لتطوير موقعك</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="card h-100 border-0 bg-transparent">
+                    <div class="card-body">
+                        <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                            <span class="fs-4 fw-bold">1</span>
+                        </div>
+                        <h5 class="mt-3 fw-bold">املأ النموذج</h5>
+                        <p class="text-muted">قم بملء نموذج الطلب بجميع التفاصيل المطلوبة</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="card h-100 border-0 bg-transparent">
+                    <div class="card-body">
+                        <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                            <span class="fs-4 fw-bold">2</span>
+                        </div>
+                        <h5 class="mt-3 fw-bold">التواصل والمناقشة</h5>
+                        <p class="text-muted">سنتواصل معك لمناقشة التفاصيل والمتطلبات</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="card h-100 border-0 bg-transparent">
+                    <div class="card-body">
+                        <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                            <span class="fs-4 fw-bold">3</span>
+                        </div>
+                        <h5 class="mt-3 fw-bold">التطوير</h5>
+                        <p class="text-muted">نبدأ في تطوير موقعك وفقاً للمتطلبات المحددة</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="card h-100 border-0 bg-transparent">
+                    <div class="card-body">
+                        <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                            <span class="fs-4 fw-bold">4</span>
+                        </div>
+                        <h5 class="mt-3 fw-bold">التسليم</h5>
+                        <p class="text-muted">نسلمك الموقع مكتملاً مع الكود المصدري</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="fw-bold text-center mb-5">الأسئلة الشائعة</h2>
+                
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                هل الخدمة مجانية فعلاً؟
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                نعم، خدمة تطوير الموقع مجانية تماماً. ستحتاج فقط لدفع تكلفة الاستضافة والدومين التي تتراوح بين 50-100 دولار سنوياً.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                كم يستغرق تطوير الموقع؟
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                يختلف الوقت حسب تعقيد الموقع، لكن عادة ما يستغرق من أسبوعين إلى شهر لإنجاز موقع احترافي كامل.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                هل سأحصل على الكود المصدري؟
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                نعم بالطبع! نعطيك الموقع كاملاً مفتوح الكود والمصدر ليصبح لك كامل التحكم في موقعك.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                هل تقدمون الدعم الفني؟
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                نعم، نقدم الدعم الفني والصيانة المجانية لمدة 6 أشهر، وبعدها يمكنك الاشتراك في خطة الصيانة المدفوعة.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

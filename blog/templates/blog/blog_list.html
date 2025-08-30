@@ -1,0 +1,149 @@
+<!-- blog/blog_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}المدونة - Deep Noorana{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="bg-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h1 class="display-5 fw-bold mb-3">مدونة التقنية</h1>
+                <p class="lead">مقالات تقنية مفيدة وتجارب في عالم تطوير المواقع والبرمجة</p>
+            </div>
+            <div class="col-lg-4 text-end">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'blog:create_post' %}" class="btn btn-light btn-lg">
+                        <i class="fas fa-plus me-2"></i>
+                        كتابة مقالة جديدة
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Search Section -->
+<section class="py-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <form method="get" class="d-flex">
+                    <input type="search" name="search" class="form-control me-2" placeholder="البحث في المقالات..." value="{{ search_query }}">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Posts -->
+<section class="section-padding">
+    <div class="container">
+        {% if posts %}
+            <div class="row g-4">
+                {% for post in posts %}
+                    <div class="col-lg-4 col-md-6">
+                        <article class="card h-100 shadow-sm">
+                            {% if post.image %}
+                                <img src="{{ post.image.url }}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="{{ post.title }}">
+                            {% else %}
+                                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                                    <i class="fas fa-image fa-3x text-muted"></i>
+                                </div>
+                            {% endif %}
+                            
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">
+                                    <a href="{{ post.get_absolute_url }}" class="text-decoration-none text-dark">
+                                        {{ post.title }}
+                                    </a>
+                                </h5>
+                                
+                                {% if post.excerpt %}
+                                    <p class="card-text text-muted">{{ post.excerpt|truncatewords:20 }}</p>
+                                {% endif %}
+                                
+                                <div class="mt-auto">
+                                    <div class="d-flex justify-content-between align-items-center text-muted small">
+                                        <span>
+                                            <i class="fas fa-user me-1"></i>
+                                            {{ post.author.first_name|default:post.author.username }}
+                                        </span>
+                                        <span>
+                                            <i class="fas fa-calendar me-1"></i>
+                                            {{ post.created_at|date:"d M Y" }}
+                                        </span>
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between align-items-center mt-2">
+                                        <span class="text-muted small">
+                                            <i class="fas fa-eye me-1"></i>
+                                            {{ post.views_count }} مشاهدة
+                                        </span>
+                                        <a href="{{ post.get_absolute_url }}" class="btn btn-primary btn-sm">
+                                            اقرأ المزيد
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Pagination -->
+            {% if posts.has_other_pages %}
+                <nav class="mt-5">
+                    <ul class="pagination justify-content-center">
+                        {% if posts.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ posts.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}">السابق</a>
+                            </li>
+                        {% endif %}
+                        
+                        {% for num in posts.paginator.page_range %}
+                            {% if posts.number == num %}
+                                <li class="page-item active">
+                                    <span class="page-link">{{ num }}</span>
+                                </li>
+                            {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ num }}{% if search_query %}&search={{ search_query }}{% endif %}">{{ num }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if posts.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ posts.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}">التالي</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            {% endif %}
+        {% else %}
+            <div class="text-center py-5">
+                <i class="fas fa-search fa-4x text-muted mb-4"></i>
+                <h3>لا توجد مقالات</h3>
+                <p class="text-muted">
+                    {% if search_query %}
+                        لم يتم العثور على مقالات تحتوي على "{{ search_query }}"
+                    {% else %}
+                        لم يتم نشر أي مقالات بعد
+                    {% endif %}
+                </p>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'blog:create_post' %}" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>
+                        اكتب أول مقالة
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

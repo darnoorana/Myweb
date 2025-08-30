@@ -1,0 +1,112 @@
+
+<!-- blog/post_detail.html -->
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ post.title }} - مدونة Deep Noorana{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Post Content -->
+            <article class="card border-0 shadow-sm">
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" class="card-img-top" style="height: 300px; object-fit: cover;" alt="{{ post.title }}">
+                {% endif %}
+                
+                <div class="card-body p-4">
+                    <h1 class="card-title fw-bold mb-3">{{ post.title }}</h1>
+                    
+                    <div class="d-flex justify-content-between align-items-center text-muted mb-4">
+                        <span>
+                            <i class="fas fa-user me-2"></i>
+                            {{ post.author.first_name|default:post.author.username }}
+                        </span>
+                        <span>
+                            <i class="fas fa-calendar me-2"></i>
+                            {{ post.created_at|date:"d M Y" }}
+                        </span>
+                        <span>
+                            <i class="fas fa-eye me-2"></i>
+                            {{ post.views_count }} مشاهدة
+                        </span>
+                    </div>
+                    
+                    {% if user == post.author %}
+                        <div class="mb-4">
+                            <a href="{% url 'blog:edit_post' post.slug %}" class="btn btn-outline-primary btn-sm me-2">
+                                <i class="fas fa-edit"></i> تعديل
+                            </a>
+                            <a href="{% url 'blog:delete_post' post.slug %}" class="btn btn-outline-danger btn-sm">
+                                <i class="fas fa-trash"></i> حذف
+                            </a>
+                        </div>
+                    {% endif %}
+                    
+                    <div class="content">
+                        {{ post.content|linebreaks }}
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Comments Section -->
+            <div class="card border-0 shadow-sm mt-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">
+                        <i class="fas fa-comments me-2"></i>
+                        التعليقات ({{ comments.count }})
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if user.is_authenticated %}
+                        <form method="post" class="mb-4">
+                            {% csrf_token %}
+                            {% crispy form %}
+                        </form>
+                    {% else %}
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            يجب <a href="{% url 'account_login' %}">تسجيل الدخول</a> لإضافة تعليق
+                        </div>
+                    {% endif %}
+                    
+                    {% for comment in comments %}
+                        <div class="border-bottom pb-3 mb-3">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <h6 class="fw-bold">{{ comment.author.first_name|default:comment.author.username }}</h6>
+                                <small class="text-muted">{{ comment.created_at|date:"d M Y H:i" }}</small>
+                            </div>
+                            <p class="mb-0 mt-2">{{ comment.content|linebreaks }}</p>
+                        </div>
+                    {% empty %}
+                        <p class="text-muted text-center py-4">
+                            <i class="fas fa-comment-slash fa-2x mb-2"></i><br>
+                            لا توجد تعليقات بعد. كن أول من يعلق!
+                        </p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h6 class="mb-0">
+                        <i class="fas fa-newspaper me-2"></i>
+                        مقالات أخرى
+                    </h6>
+                </div>
+                <div class="card-body p-0">
+                    <!-- You can add related posts here -->
+                    <div class="p-3 text-center text-muted">
+                        <i class="fas fa-newspaper fa-2x mb-2"></i><br>
+                        لا توجد مقالات ذات صلة
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

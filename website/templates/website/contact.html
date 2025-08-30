@@ -1,0 +1,160 @@
+<!-- website/contact.html -->
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}تواصل معنا - Deep Noorana{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="bg-primary text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-5 fw-bold mb-3">تواصل معنا</h1>
+                <p class="lead">نحن هنا للإجابة على جميع استفساراتك ومساعدتك في تحقيق أهدافك</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form -->
+<section class="section-padding">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-5">
+                        <h3 class="fw-bold mb-4">أرسل لنا رسالة</h3>
+                        <form method="post">
+                            {% csrf_token %}
+                            {% crispy form %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <!-- Contact Info -->
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-3">معلومات التواصل</h5>
+                        
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-envelope fa-lg text-primary me-3"></i>
+                            <div>
+                                <h6 class="mb-0">البريد الإلكتروني</h6>
+                                <a href="mailto:deepnoorana@gmail.com" class="text-muted">deepnoorana@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fab fa-whatsapp fa-lg text-success me-3"></i>
+                            <div>
+                                <h6 class="mb-0">واتساب</h6>
+                                <span class="text-muted">+20 123 456 789</span>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fab fa-telegram fa-lg text-info me-3"></i>
+                            <div>
+                                <h6 class="mb-0">تليجرام</h6>
+                                <span class="text-muted">@deepnoorana</span>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-phone fa-lg text-warning me-3"></i>
+                            <div>
+                                <h6 class="mb-0">الهاتف</h6>
+                                <span class="text-muted">+20 123 456 789</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Working Hours -->
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-3">ساعات العمل</h5>
+                        
+                        <div class="row text-center">
+                            <div class="col-6">
+                                <div class="p-3 bg-light rounded">
+                                    <i class="fas fa-sun fa-2x text-warning mb-2"></i>
+                                    <h6 class="fw-bold">الأحد - الخميس</h6>
+                                    <span class="text-muted small">9:00 ص - 6:00 م</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-3 bg-light rounded">
+                                    <i class="fas fa-moon fa-2x text-info mb-2"></i>
+                                    <h6 class="fw-bold">الجمعة - السبت</h6>
+                                    <span class="text-muted small">عطلة أسبوعية</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info mt-3 mb-0">
+                            <i class="fas fa-info-circle me-2"></i>
+                            نحن متاحون للطوارئ 24/7 عبر الواتساب
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="fw-bold text-center mb-5">الأسئلة الشائعة</h2>
+                
+                <div class="accordion" id="contactFAQ">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                كم يستغرق الرد على الرسائل؟
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#contactFAQ">
+                            <div class="accordion-body">
+                                نحرص على الرد على جميع الرسائل خلال 24 ساعة كحد أقصى. للاستفسارات العاجلة يمكنك التواصل معنا عبر الواتساب.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                هل تقدمون استشارات مجانية؟
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#contactFAQ">
+                            <div class="accordion-body">
+                                نعم، نقدم استشارات مجانية لجميع العملاء لمساعدتهم في تحديد احتياجاتهم وأفضل الحلول المناسبة لهم.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                هل يمكنني طلب موعد للمقابلة؟
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#contactFAQ">
+                            <div class="accordion-body">
+                                بالطبع! يمكنك طلب موعد للمقابلة عبر إرسال رسالة أو الاتصال بنا مباشرة، وسنحدد الوقت المناسب للطرفين.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
