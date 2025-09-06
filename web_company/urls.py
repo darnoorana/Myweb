@@ -18,9 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from website.admin_site import deep_noorana_admin_site
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', deep_noorana_admin_site.urls),
     path('', include('website.urls')),
     path('blog/', include('blog.urls')),
     path('dashboard/', include('dashboard.urls')),

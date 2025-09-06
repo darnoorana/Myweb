@@ -2,8 +2,10 @@
 # blog/admin.py
 from django.contrib import admin
 from .models import BlogPost, Comment
+from website.admin_site import deep_noorana_admin_site
 
-@admin.register(BlogPost)
+
+@admin.register(BlogPost, site=deep_noorana_admin_site)
 class BlogPostAdmin(admin.ModelAdmin):
     list_display = ['title', 'author', 'is_published', 'views_count', 'created_at']
     list_filter = ['is_published', 'created_at', 'author']
@@ -30,7 +32,7 @@ class BlogPostAdmin(admin.ModelAdmin):
             obj.author = request.user
         super().save_model(request, obj, form, change)
 
-@admin.register(Comment)
+@admin.register(Comment, site=deep_noorana_admin_site)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ['author', 'post', 'content_preview', 'is_approved', 'created_at']
     list_filter = ['is_approved', 'created_at']

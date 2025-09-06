@@ -1,9 +1,10 @@
 # website/admin.py
 from django.contrib import admin
+from .admin_site import deep_noorana_admin_site
 from django.utils.html import format_html
 from .models import WebsiteRequest, ContactMessage, JobApplication
 
-@admin.register(WebsiteRequest)
+@admin.register(WebsiteRequest, site=deep_noorana_admin_site)
 class WebsiteRequestAdmin(admin.ModelAdmin):
     list_display = ['website_name', 'client_name', 'get_domain_display', 'status', 'created_at', 'contact_info']
     list_filter = ['status', 'domain', 'created_at']
@@ -48,7 +49,7 @@ class WebsiteRequestAdmin(admin.ModelAdmin):
         queryset.update(status='completed')
     mark_as_completed.short_description = 'تحديد كمكتمل'
 
-@admin.register(ContactMessage)
+@admin.register(ContactMessage, site=deep_noorana_admin_site)
 class ContactMessageAdmin(admin.ModelAdmin):
     list_display = ['name', 'email', 'subject', 'is_read', 'created_at']
     list_filter = ['is_read', 'created_at']
@@ -78,7 +79,7 @@ class ContactMessageAdmin(admin.ModelAdmin):
         queryset.update(is_read=False)
     mark_as_unread.short_description = 'تحديد كغير مقروءة'
 
-@admin.register(JobApplication)
+@admin.register(JobApplication, site=deep_noorana_admin_site)
 class JobApplicationAdmin(admin.ModelAdmin):
     list_display = ['name', 'email', 'get_position_display', 'get_experience_level_display', 'created_at']
     list_filter = ['position', 'experience_level', 'created_at']
